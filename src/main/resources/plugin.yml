@@ -1,0 +1,8 @@
+main: me.playbosswar.playapidemo.PlayApiDemo
+name: PlayAPIDemo
+author: PlayBossWar
+version: 1.0.0
+depend: [PlayAPI]
+
+commands:
+  arena:
