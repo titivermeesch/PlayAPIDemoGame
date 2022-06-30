@@ -2,6 +2,7 @@ package me.playbosswar.playapidemo;
 
 import me.playbosswar.playapi.arena.Arena;
 import me.playbosswar.playapi.arena.ArenaManager;
+import me.playbosswar.playapi.lobby.LobbyManager;
 import me.playbosswar.playapi.storage.StorageManager;
 import me.playbosswar.playapi.storage.adapters.YAMLAdapter;
 import me.playbosswar.playapi.storage.exceptions.AdapterSetupFailedException;
@@ -14,6 +15,7 @@ public class PlayApiDemo extends JavaPlugin {
     private static PlayApiDemo instance;
     private ArenaManager arenaManager;
     private StorageManager storageManager;
+    private LobbyManager lobbyManager;
 
     @Override
     public void onEnable() {
@@ -29,7 +31,8 @@ public class PlayApiDemo extends JavaPlugin {
     private void setup() {
         saveDefaultConfig();
         try {
-            storageManager.registerStorageAdapter(Arena.class, new YAMLAdapter<>(this, "arenas.yml", Arena.class));
+            storageManager.registerStorageAdapter(Arena.class, new YAMLAdapter<>(this, "arenas.yml"));
+            storageManager.registerStorageAdapter(Settings.class, new YAMLAdapter<>(this, "config.yml"));
         } catch (AdapterSetupFailedException | IOException e) {
             e.printStackTrace();
         }
