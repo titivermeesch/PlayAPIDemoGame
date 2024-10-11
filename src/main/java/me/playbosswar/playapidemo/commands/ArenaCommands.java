@@ -17,6 +17,12 @@ import java.util.UUID;
 public class ArenaCommands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if(args.length == 0) {
+            return true;
+        }
+
+        String firstArg = args[0];
+
         Arena arena = new Arena("Test arena", UUID.randomUUID());
         try {
             PlayApiDemo.getInstance().getArenaManager().registerArena(arena);
